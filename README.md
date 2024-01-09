@@ -1,3 +1,7 @@
+# ⚠️ Deprecated
+
+This package has been deprecated in favor of [`deep-utility-types`](https://github.com/tobloef/deep-utility-types). This new package has the same `DeepOmit` type, as well as several other similar deep utility types.
+
 # `DeepOmit<Type, Keys>`
 
 Utility type for omitting nested properties from an object. Fully type-safe, has nice autocompletion, and works with arrays.
