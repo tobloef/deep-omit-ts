@@ -1,4 +1,4 @@
-import {KeysAsDotNotation} from '../util-types/keys-as-dot-notation';
+import {DefaultIgnoredTypes, KeysAsDotNotation} from '../util-types/keys-as-dot-notation';
 import {IsUnion} from '../util-types/is-union';
 import {UnionToTuple} from '../util-types/union-to-tuple';
 import {IsNever} from "../util-types/is-never";
@@ -38,12 +38,12 @@ export type DeepRequireInObject<
 > = (
   RequiredKeys extends `${infer TopKey}.${infer Rest}`
     ? TopKey extends keyof T
-      ? Omit<T, TopKey> & {
-      [K in TopKey]-?: DeepRequireInsideProp<T[K], Rest, IgnoredTypes>
-    }
+      ? (Omit<T, TopKey> & {
+        [K in TopKey]-?: DeepRequireInsideProp<Exclude<T[K], undefined>, Rest, IgnoredTypes>
+      })
       : T
     : RequiredKeys extends keyof T
-      ? Omit<T, RequiredKeys> & Required<Pick<T, RequiredKeys>>
+      ? (Omit<T, RequiredKeys> & Required<Pick<T, RequiredKeys>>)
       : T
   );
 

@@ -38,12 +38,12 @@ export type DeepOptionalInObject<
 > = (
   OptionalKeys extends `${infer TopKey}.${infer Rest}`
     ? TopKey extends keyof T
-      ? Omit<T, TopKey> & {
-      [K in TopKey]?: DeepOptionalInsideProp<T[K], Rest, IgnoredTypes>
-    }
+      ? (Omit<T, TopKey> & {
+        [K in TopKey]?: DeepOptionalInsideProp<Exclude<T[K], undefined>, Rest, IgnoredTypes>
+      })
       : T
     : OptionalKeys extends keyof T
-      ? Omit<T, OptionalKeys> & Partial<Pick<T, OptionalKeys>>
+      ? (Omit<T, OptionalKeys> & Partial<Pick<T, OptionalKeys>>)
       : T
   );
 
