@@ -1,3 +1,7 @@
+# ⚠️ Deprecation Notice ⚠️
+
+This package has been moved to [`deep-utility-types`](https://github.com/tobloef/deep-utility-types).
+
 # `DeepOmit<Type, Keys>`
 
 Utility type for omitting nested properties from a type. Fully type-safe, has nice autocompletion, and works with arrays.
